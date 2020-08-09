@@ -1,24 +1,53 @@
 import React from "react"
 import Layout from "../components/layout"
-import scrollTo from 'gatsby-plugin-smoothscroll';
-import bigPic from "../images/wallpaper.png";
+import { graphql, StaticQuery } from "gatsby"
+import SEO from "../components/seo"
+import BackgroundImage from 'gatsby-background-image'
+import styled from "styled-components"
+import "../css/Main.css"
 
-const index = () => (
-  <Layout>
-    <div>
-      <h1>Hi! I'm building a fake Gatsby site as part of a tutorial!</h1>
-      <p>
-        Let's build a website!
-      </p>
+export const query = graphql`
+  query HomePageQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    mainBackgroundImage: file(relativePath: { eq: "index-background.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1920, quality:100) {
+           ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
+
+function Main({prop, data}) {
+
+  const mainBackgroundImage = data.mainBackgroundImage.childImageSharp.fluid;
+
+  return (
+    <Layout>
+      <SEO title={data.site.siteMetadata.title}/>
       <div>
-        <button onClick={() => scrollTo('#d')}>My link</button>
+        <BackgroundImage
+          className={"div-main-background"}
+          fluid={mainBackgroundImage}
+          backgroundColor={`#040e18`}
+        >
+          <div className={"main-title"}>
+            <h2 className={"main-title-text"}>
+              Nice to meet you
+            </h2>
+            <h1 className={"main-title-text"}>
+              I'm {data.site.siteMetadata.title}
+            </h1>
+          </div>
+        </BackgroundImage>
       </div>
+    </Layout>
+  )
+}
 
-      <div id={"d"}>
-        Hello
-      </div>
-    </div>
-  </Layout>
-)
-
-export default index;
+export default Main;

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Yifang Wang`,
-    description: `Welcome to my personal website.`,
+    description: `Welcome to @Yifang Wang's personal website`,
     author: `@Yifang Wang`,
   },
   plugins: [
@@ -32,13 +32,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
+        name: `Yifang Wang`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#ffffff`,
+        background_color: `#663399`,
+        theme_color: `#fff`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
